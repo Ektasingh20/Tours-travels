@@ -1,8 +1,8 @@
 (function(){
   var PHONE = "919660635136";
-  // Office coordinates (Mata Ji Ki Pandoli area, Chittorgarh district, Rajasthan)
-  var OFFICE_LAT = 24.9490;
-  var OFFICE_LNG = 74.5870;
+  // Collectorate Circle, Chittorgarh 312001; coordinates await verification.
+  var OFFICE_LAT = null;
+  var OFFICE_LNG = null;
 
   function buildBookingMessage(data){
     var lines = [
@@ -62,6 +62,10 @@
   var locateBtn = document.getElementById("locate-btn");
 
   locateBtn.addEventListener("click", function(){
+    if(OFFICE_LAT === null || OFFICE_LNG === null){
+      readout.textContent = "Our office is at Collectorate Circle, Chittorgarh 312001. Open in Google Maps for distance and directions.";
+      return;
+    }
     if(!("geolocation" in navigator)){
       readout.textContent = "Your browser doesn't support location lookup — use the Google Maps link instead.";
       return;
@@ -73,7 +77,6 @@
       var brng = bearing(lat, lng, OFFICE_LAT, OFFICE_LNG);
       needle.style.transform = "rotate(" + brng + "deg)";
       readout.textContent = "You're roughly " + dist.toFixed(1) + " km from our office, heading " + compassLabel(brng) + ".";
-      directionsLink.href = "https://www.google.com/maps/dir/?api=1&origin=" + lat + "," + lng + "&destination=" + OFFICE_LAT + "," + OFFICE_LNG;
     }, function(err){
       readout.textContent = "Couldn't get your location (" + err.message + "). You can still use the Google Maps link.";
     }, { enableHighAccuracy:true, timeout:10000 });
