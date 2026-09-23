@@ -146,7 +146,7 @@
   .section-alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 
   /* ---------- Fleet ---------- */
-  .fleet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .fleet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
   .fleet-card{
     background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;
     display:flex;flex-direction:column;
